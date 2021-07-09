@@ -31,6 +31,8 @@
     import InputMessage from './inputMessage.vue'
     import ChatRoomSelection from './chatRoomSelection.vue'
 
+    import Echo from 'laravel-echo';
+
     export default {
         components: {
             AppLayout,
@@ -46,7 +48,10 @@
             }
         },
         watch: {
-            currentRoom() {
+            currentRoom( val, oldVal ) {
+                if ( oldVal.id ) {
+                    this.disconnect( oldVal );
+                }
                 this.connect();
             }
         },
@@ -54,12 +59,17 @@
             connect() {
                 if( this.currentRoom.id ) {
                     let vm = this;
-                    this.getMessages();                    
-                    window.Echo.private("chat." + this.currentRoom.id)
-                    .listen('.message.new', e => {
+                    this.getMessages();    
+                    console.log("debug", vm)                
+                    window.Echo.private("chat." + this.currentRoom.id )
+                    .listen('NewChatMessage', e => {
+                        console.log("e",e);
                         vm.getMessages();
-                    })
+                    });
                 }
+            },
+            disconnect( room ) {
+                window.Echo.leave("chat." + room.id);
             },
             getRooms() {
                 axios.get('/chat/rooms')

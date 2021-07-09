@@ -7,6 +7,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\ChatMessage;
@@ -33,7 +34,8 @@ class NewChatMessage implements ShouldBroadcast
      * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn()
-    {
-        return new PrivateChannel('chat.', $this->chatMessage->chat_room_id);
+    {   
+        // dd('chat.'. $this->chatMessage->chat_room_id);
+        return new PrivateChannel('chat.'. $this->chatMessage->chat_room_id);
     }
 }
