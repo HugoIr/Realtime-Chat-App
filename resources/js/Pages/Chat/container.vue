@@ -1,5 +1,6 @@
 <template>
     <app-layout>
+        <!-- {{ myGlobe }} -->
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 <chat-room-selection 
@@ -59,11 +60,9 @@
             connect() {
                 if( this.currentRoom.id ) {
                     let vm = this;
-                    this.getMessages();    
-                    console.log("debug", vm)                
+                    this.getMessages();              
                     window.Echo.private("chat." + this.currentRoom.id )
                     .listen('NewChatMessage', e => {
-                        console.log("e",e);
                         vm.getMessages();
                     });
                 }

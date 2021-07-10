@@ -1,9 +1,10 @@
 <template>
     <div>
-        <p>{{ message.user.name }}: {{ message.message }} 
+        <p :class="[ $userId == message.user.id ? 'current-user' : '' ]" >
+            <span v-if="$userId != message.user.id">{{ message.user.name }}:</span> {{ message.message }} 
             <span class="text-xs" style="padding-left:10px">{{formatDate(message.updated_at)}}</span>
         </p>
-        <!-- <p style="float:right" >{{ message.updated_at->diffForHumans() }}</p> -->
+        <!-- {{ $myGlobe=="a" }} -->
     </div>
 </template>
 
@@ -14,10 +15,19 @@ export default {
     methods: {
         formatDate(value) {
             if (value) {
+                // console.log(this)
                 return moment(value).fromNow();
             }
-        }
+        },
+
     }
 };
 
 </script>
+
+<style scoped>
+    .current-user {
+        float: right;
+        background-color: bisque;
+    }
+</style>

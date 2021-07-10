@@ -19305,9 +19305,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.currentRoom.id) {
         var vm = this;
         this.getMessages();
-        console.log("debug", vm);
         window.Echo["private"]("chat." + this.currentRoom.id).listen('NewChatMessage', function (e) {
-          console.log("e", e);
           vm.getMessages();
         });
       }
