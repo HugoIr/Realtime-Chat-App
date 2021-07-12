@@ -1,6 +1,5 @@
 <template>
     <app-layout>
-        <!-- {{ myGlobe }} -->
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 <chat-room-selection 
@@ -15,10 +14,14 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <message-container :messages="messages"/>
+                    <message-container 
+                        :messages="messages"
+                        :currentUserId="userId" 
+                    />
                     <input-message 
-                    :room="currentRoom" 
-                    v-on:messagesent="getMessages()" />
+                        :room="currentRoom" 
+                        v-on:messagesent="getMessages()" 
+                    />
 
                 </div>
             </div>
@@ -32,8 +35,6 @@
     import InputMessage from './inputMessage.vue'
     import ChatRoomSelection from './chatRoomSelection.vue'
 
-    import Echo from 'laravel-echo';
-
     export default {
         components: {
             AppLayout,
@@ -46,6 +47,7 @@
                 chatRooms: [],
                 currentRoom: [],
                 messages: [],
+                userId: Number,
             }
         },
         watch: {
@@ -73,6 +75,7 @@
             getRooms() {
                 axios.get('/chat/rooms')
                 .then( response => {
+                    this.getCurrentUserId();
                     this.chatRooms = response.data;
                     this.setRoom( response.data[0] );
                 })
@@ -82,6 +85,15 @@
             },
             setRoom ( room ) {
                 this.currentRoom = room;
+            },
+            setCurrentUserId ( id ) {
+                this.userId = id;
+            },
+            getCurrentUserId() {
+                axios.get('/user-id/')
+                .then( response => {
+                    this.setCurrentUserId(response.data);
+                } )
             },
             getMessages() {
                 axios.get('/chat/room/' + this.currentRoom.id + '/messages')
