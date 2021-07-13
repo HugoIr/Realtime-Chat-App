@@ -90,7 +90,7 @@
                 this.userId = id;
             },
             getCurrentUserId() {
-                axios.get('/user-id/')
+                axios.get('https://ngobrolinaja.herokuapp.com/user-id/')
                 .then( response => {
                     this.setCurrentUserId(response.data);
                 } )
