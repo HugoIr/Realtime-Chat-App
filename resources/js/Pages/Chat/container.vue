@@ -48,6 +48,7 @@
                 currentRoom: [],
                 messages: [],
                 userId: Number,
+                isUserOnline: Boolean,
             }
         },
         watch: {
@@ -93,6 +94,15 @@
                 axios.get('/user-id')
                 .then( response => {
                     this.setCurrentUserId(response.data);
+                } )
+            },
+            setIsUserOnline (isOnline) {
+                this.isUserOnline = isOnline;
+            },
+            getIsUserOnline () {
+                axios.get('/is-user-online')
+                .then( response => {
+                    this.setIsUserOnline( response.data );
                 } )
             },
             getMessages() {

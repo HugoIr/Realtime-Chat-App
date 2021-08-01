@@ -33,6 +33,10 @@ Route::get('/user-id', function() {
     return Auth::user()->id;
 });
 
+Route::get('/is-user-online', function() {
+    return Auth::user()->isUserOnline();
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
