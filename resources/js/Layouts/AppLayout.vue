@@ -10,17 +10,15 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
-                                <inertia-link :href="route('dashboard')">
-                                    <jet-application-mark class="block h-9 w-auto" />
+                                <inertia-link :href="route('chat')">
+                                    <img class="block h-9 w-auto" src="https://www.linkpicture.com/q/logo-ngobrolinaja-chat-bubble.png" alt="">
                                 </inertia-link>
                             </div>
 
+
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </jet-nav-link>
-                                <jet-nav-link :href="route('chat')" :active="route().current('chat')">
+                                <jet-nav-link class="hover:no-underline" :href="route('chat')" :active="route().current('chat')">
                                     Chat
                                 </jet-nav-link>
                                                                 

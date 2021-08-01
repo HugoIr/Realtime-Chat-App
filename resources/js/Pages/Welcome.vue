@@ -1,16 +1,39 @@
 <template>
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 items-center sm:pt-0">
         <div v-if="canLogin" class="fixed top-0 right-0 sm:block">
-            <inertia-link v-if="$page.props.user" href="/dashboard" class="text-sm text-gray-700 underline">
-                Dashboard
-            </inertia-link>
+
+                <div class="w-screen" v-if="$page.props.user">
+                    <header class="bg-gray-800 py-2 ">
+                        <div class="container mx-auto justify-between font-header">
+                            <nav class="navbar navbar-expand-lg navbar-dark space-x-4 text-gray-300 text-sm sm:text-base">
+                                <a href="/" class="navbar-brand text-lg font-medium text-gray-100 no-underline">
+                                    <div class="flex items-center">
+                                        <div ><img class="h-7 pr-1" src="https://www.linkpicture.com/q/logo-ngobrolinaja-chat-bubble.png" alt=""></div>
+                                        <h4>NgobrolinAja</h4>
+                                    </div>
+                                </a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>                                
+                                
+                                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                    <div class="navbar-nav ml-auto">
+                                        <inertia-link href="/chat" class="nav-item nav-link no-underline text-light hover:text-white">
+                                            Chat
+                                        </inertia-link>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </header>
+                </div>
 
             <template v-else>
                 <div class="w-screen">
                     <header class="bg-gray-800 py-2 ">
                         <div class="container mx-auto justify-between font-header">
                             <nav class="navbar navbar-expand-lg navbar-dark space-x-4 text-gray-300 text-sm sm:text-base">
-                                <a href="{{ url('/') }}" class="navbar-brand text-lg font-medium text-gray-100 no-underline">
+                                <a href="/" class="navbar-brand text-lg font-medium text-gray-100 no-underline">
                                     <div class="flex items-center">
                                         <div ><img class="h-7 pr-1" src="https://www.linkpicture.com/q/logo-ngobrolinaja-chat-bubble.png" alt=""></div>
                                         <h4>NgobrolinAja</h4>
