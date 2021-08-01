@@ -1,6 +1,5 @@
 <template>
     <div>
-        <jet-banner />
 
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
