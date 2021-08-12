@@ -10,7 +10,9 @@
                 />
             </h2>
         </template>
-
+        <div>
+            <h2>{{ isUserOnline }}</h2>
+        </div>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -63,7 +65,8 @@
             connect() {
                 if( this.currentRoom.id ) {
                     let vm = this;
-                    this.getMessages();              
+                    this.getMessages(); 
+                    this.getIsUserOnline()
                     window.Echo.private("chat." + this.currentRoom.id )
                     .listen('NewChatMessage', e => {
                         vm.getMessages();
@@ -102,8 +105,12 @@
             getIsUserOnline () {
                 axios.get('/is-user-online')
                 .then( response => {
+                    console.log('res data', response.data);
                     this.setIsUserOnline( response.data );
                 } )
+                .catch (error => {
+                    console.log('res error', error);
+                })
             },
             getMessages() {
                 axios.get('/chat/room/' + this.currentRoom.id + '/messages')

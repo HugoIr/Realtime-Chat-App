@@ -1,11 +1,15 @@
 <template>
-    <div class="grid grid-cols-3">
-        <p :class="[ currentUserId == message.user.id ? 'current-user' : 'other-users',
-                    currentUserId == message.user.id ? 'col-end-4' : '' ]" >
-            <span v-if="currentUserId != message.user.id">{{ message.user.name }}:</span> 
-            {{ message.message }} 
-            <span  class="text-xs" style="padding-left:10px">{{formatDate(message.updated_at)}}</span>
-        </p>
+    <div class="">
+        <div :class= "currentUserId == message.user.id ? 'gridEnd' : 'gridStart' " >
+
+            <p :class= "currentUserId == message.user.id ? 'p-current-user' : 'p-other-user' " >
+                <span class="display-name block" v-if="currentUserId != message.user.id">{{ message.user.name }}</span> 
+                {{ message.message }}     
+                
+            </p>
+            <span class="message-date text-xs">{{formatDate(message.updated_at)}}</span>
+        </div>
+
     </div>
 </template>
 
@@ -32,15 +36,40 @@ export default {
     p {
         padding: 10px 20px;
         border-radius: 7px;
-    }
-    .current-user {
-        float: right;
-        background-color: bisque;
-        margin-bottom: 20px;
+        word-break: break-all;
     }
 
-    .other-users {
+    .p-current-user {
+        background-color: bisque;
+    }
+
+    .p-other-user {
         background-color:#b6f76f;
+    }
+
+    .display-name {
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.08rem;
+    }
+
+    .message-date {
+        padding: 5px 20px;
+    }
+
+    .gridStart {
+        display: block;
+        
         margin-bottom: 20px;
+        max-width: 85%;
+        float: left;
+    }
+
+    .gridEnd {
+        display: block;
+        
+        margin-bottom: 20px;
+        max-width: 85%;
+        float: right;
     }
 </style>
