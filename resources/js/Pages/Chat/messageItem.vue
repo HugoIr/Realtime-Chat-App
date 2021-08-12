@@ -44,7 +44,7 @@ export default {
     }
 
     .p-other-user {
-        background-color:#b6f76f;
+        background-color:#c0ff7d;
     }
 
     .display-name {
@@ -59,7 +59,7 @@ export default {
 
     .gridStart {
         display: block;
-        
+        margin-left: 15px;
         margin-bottom: 20px;
         max-width: 85%;
         float: left;
@@ -67,7 +67,7 @@ export default {
 
     .gridEnd {
         display: block;
-        
+        margin-right: 15px;
         margin-bottom: 20px;
         max-width: 85%;
         float: right;

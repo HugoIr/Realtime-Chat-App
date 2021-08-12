@@ -11,9 +11,7 @@
                 />
             </h2>
         </template>
-        <div>
-            <h2>{{ isUserOnline }}</h2>
-        </div>
+
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -106,7 +104,6 @@
             getIsUserOnline () {
                 axios.get('/is-user-online')
                 .then( response => {
-                    console.log('res data', response);
                     this.setIsUserOnline( response.data );
                 } )
                 .catch (error => {

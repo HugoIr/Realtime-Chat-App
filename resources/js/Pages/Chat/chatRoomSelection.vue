@@ -19,10 +19,11 @@
             </select>
         </div>
 
+    </div>
+
         <user-status
             :usersOnline="usersOnline"
         />
-    </div>
 </template>
 
 <script>
