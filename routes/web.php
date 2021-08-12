@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ChatController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,15 @@ Route::get('/user-id', function() {
 });
 
 Route::get('/is-user-online', function() {
-    return Auth::user()->isUserOnline();
+    $users = User::all();
+    $arr_id_online = [];
+    foreach ($users as $user) {
+        if ($user->isUserOnline()) {
+
+            array_push($arr_id_online, $user->name);
+        }
+    }
+    return $arr_id_online;
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

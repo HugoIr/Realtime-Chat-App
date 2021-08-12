@@ -8,6 +8,7 @@ use App\Models\ChatMessage;
 use Illuminate\Support\Facades\Auth;
 
 use App\Events\NewChatMessage;
+use App\Models\User;
 
 class ChatController extends Controller
 {

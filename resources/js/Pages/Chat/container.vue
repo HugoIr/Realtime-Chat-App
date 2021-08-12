@@ -6,6 +6,7 @@
                     v-if="currentRoom.id"
                     :rooms="chatRooms"
                     :currentRoom="currentRoom"
+                    :usersOnline="isUserOnline"
                     v-on:roomchanged="setRoom( $event )"
                 />
             </h2>
@@ -50,7 +51,7 @@
                 currentRoom: [],
                 messages: [],
                 userId: Number,
-                isUserOnline: Boolean,
+                isUserOnline: [],
             }
         },
         watch: {
@@ -105,7 +106,7 @@
             getIsUserOnline () {
                 axios.get('/is-user-online')
                 .then( response => {
-                    console.log('res data', response.data);
+                    console.log('res data', response);
                     this.setIsUserOnline( response.data );
                 } )
                 .catch (error => {

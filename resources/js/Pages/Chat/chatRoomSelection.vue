@@ -18,12 +18,18 @@
                 </option>
             </select>
         </div>
+
+        <user-status
+            :usersOnline="usersOnline"
+        />
     </div>
 </template>
 
 <script>
+import UserStatus from './userStatus.vue';
+
 export default {
-    props: ['rooms', 'currentRoom'],
+    props: ['rooms', 'currentRoom', 'usersOnline'],
     data: function() {
         return {
             selected: ''
@@ -31,6 +37,9 @@ export default {
     },
     created() {
         this.selected = this.currentRoom;
+    },
+    components: {
+        UserStatus,
     }
     
 }
